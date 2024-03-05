@@ -20,6 +20,7 @@ mixin _$Todo {
   String get title => throw _privateConstructorUsedError; // 初期値を設定できる
   bool get isCompleted => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
+  String get content => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TodoCopyWith<Todo> get copyWith => throw _privateConstructorUsedError;
@@ -31,7 +32,11 @@ abstract class $TodoCopyWith<$Res> {
       _$TodoCopyWithImpl<$Res, Todo>;
   @useResult
   $Res call(
-      {String todoId, String title, bool isCompleted, DateTime createdAt});
+      {String todoId,
+      String title,
+      bool isCompleted,
+      DateTime createdAt,
+      String content});
 }
 
 /// @nodoc
@@ -51,6 +56,7 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
     Object? title = null,
     Object? isCompleted = null,
     Object? createdAt = null,
+    Object? content = null,
   }) {
     return _then(_value.copyWith(
       todoId: null == todoId
@@ -69,6 +75,10 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -81,7 +91,11 @@ abstract class _$$TodoImplCopyWith<$Res> implements $TodoCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String todoId, String title, bool isCompleted, DateTime createdAt});
+      {String todoId,
+      String title,
+      bool isCompleted,
+      DateTime createdAt,
+      String content});
 }
 
 /// @nodoc
@@ -98,6 +112,7 @@ class __$$TodoImplCopyWithImpl<$Res>
     Object? title = null,
     Object? isCompleted = null,
     Object? createdAt = null,
+    Object? content = null,
   }) {
     return _then(_$TodoImpl(
       todoId: null == todoId
@@ -116,6 +131,10 @@ class __$$TodoImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -127,7 +146,8 @@ class _$TodoImpl implements _Todo {
       {required this.todoId,
       required this.title,
       this.isCompleted = false,
-      required this.createdAt});
+      required this.createdAt,
+      required this.content});
 
   @override
   final String todoId;
@@ -139,10 +159,12 @@ class _$TodoImpl implements _Todo {
   final bool isCompleted;
   @override
   final DateTime createdAt;
+  @override
+  final String content;
 
   @override
   String toString() {
-    return 'Todo(todoId: $todoId, title: $title, isCompleted: $isCompleted, createdAt: $createdAt)';
+    return 'Todo(todoId: $todoId, title: $title, isCompleted: $isCompleted, createdAt: $createdAt, content: $content)';
   }
 
   @override
@@ -155,12 +177,13 @@ class _$TodoImpl implements _Todo {
             (identical(other.isCompleted, isCompleted) ||
                 other.isCompleted == isCompleted) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.content, content) || other.content == content));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, todoId, title, isCompleted, createdAt);
+      Object.hash(runtimeType, todoId, title, isCompleted, createdAt, content);
 
   @JsonKey(ignore: true)
   @override
@@ -174,7 +197,8 @@ abstract class _Todo implements Todo {
       {required final String todoId,
       required final String title,
       final bool isCompleted,
-      required final DateTime createdAt}) = _$TodoImpl;
+      required final DateTime createdAt,
+      required final String content}) = _$TodoImpl;
 
   @override
   String get todoId;
@@ -184,6 +208,8 @@ abstract class _Todo implements Todo {
   bool get isCompleted;
   @override
   DateTime get createdAt;
+  @override
+  String get content;
   @override
   @JsonKey(ignore: true)
   _$$TodoImplCopyWith<_$TodoImpl> get copyWith =>

@@ -10,5 +10,6 @@ class Todo with _$Todo {
     // 初期値を設定できる
     @Default(false) bool isCompleted,
     required DateTime createdAt,
+    required String content,
   }) = _Todo;
 }
