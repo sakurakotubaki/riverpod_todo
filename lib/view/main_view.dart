@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:riverpod_todo/controller/todo_provider.dart';
 import 'package:riverpod_todo/model/todo.dart';
 
@@ -16,6 +17,7 @@ class TodoListPage extends ConsumerWidget {
     // 追加ボタン押下
     void onPressedAddButton() {
       final content = todoContentTextController.text;
+
       todoContentTextController.clear();
 
       final id = (todoList.isEmpty)
@@ -71,6 +73,8 @@ class TodoListPage extends ConsumerWidget {
               child: ListView.builder(
                 itemCount: todoList.length,
                 itemBuilder: (BuildContext context, int index) {
+                  final formattedDate = DateFormat('yyyy/MM/dd HH:mm:ss')
+                      .format(todoList[index].createdAt);
                   return Dismissible(
                     key: Key(todoList[index].todoId),
                     onDismissed: (direction) {
@@ -87,7 +91,7 @@ class TodoListPage extends ConsumerWidget {
                     ),
                     child: ListTile(
                       title: Text(todoList[index].content),
-                      subtitle: Text(todoList[index].createdAt.toString()),
+                      subtitle: Text(formattedDate),
                       trailing: Checkbox(
                         value: todoList[index].isCompleted,
                         onChanged: (_) => onPressedToggleButton(index),
